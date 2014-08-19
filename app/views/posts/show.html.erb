@@ -15,23 +15,26 @@
 </div>
 
 
-<%= link_to 'root', root_url %>
+<%= link_to 'go to root page', root_url %>
     <div class="allert">
       <h3>Add a new Comment!</h3>
       <%= form_for [@post, @post.comments.build] do|f| %>
-      <%= f.label :body %>
-      <%= f.text_area :body %>
+        <%= f.label :body %>
+        <%= f.text_area :body %>
       </br>
-      <%= f.submit 'Add a new amazin and cool comment here!' %>
+      <%= f.submit 'Add a new amazing and cool comment here!' %>
       <% end %>
     </div>
 <% end %>
     <% if @post.list_of_comments %>
-        <% @post.list_of_comments.each do |comment| %>
+      <%= link_to 'update mode comments', root_url %>
+
+      <% @post.list_of_comments.each do |comment| %>
             <div>
               <p id="comment_body">
                 <%= comment.body %>
-                <!--<%= comment.user.try(:username) %>-->
+                <%= comment.id %>
+                <%= comment.user.try(:username) %>
               </p>
             </div>
             <div>

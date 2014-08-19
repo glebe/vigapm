@@ -21,6 +21,7 @@ class Post < ActiveRecord::Base
   acts_as_votable
   has_many :comments
   belongs_to :user
+  validates :title, :body, presence: true
   # self.per_page = 20 #default value for pagination
   #use a post object + user object
   #liked_by -> up vote
