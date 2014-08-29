@@ -28,7 +28,8 @@
 <div>
  <% if current_user %>
     <%= form_for [@post, @post.comments.build], html: {rows: 3} do|f| %>
-      <div class="row">
+          <%= f.hidden_field :parent_id %>
+          <div class="row">
         <div class="col-md-2"></div>
         <div class="col-md-8">
           <%= f.text_area :body, placeholder: "Add your thoughts!", class: "form-control", style: "font-size: 18px;" %>
@@ -49,8 +50,8 @@
 </div>
 <hr>
 <div class="comments-box row">
-<% if @post.list_of_comments %>
-  <% @post.list_of_comments.each do |comment| %>
+<% if @post.comments %>
+  <% @post.comments.each do |comment| %>
     <% if comment.body %>
       <div class="media">
         <a class="pull-left" href="">
@@ -59,11 +60,13 @@
         <div class="media-body">
           <h4 class="media-heading">
             <strong>
-              <%= comment.user.username %>
-              <%= link_to 'profile', user_profiles_path(current_user) %>
+              <%= comment.user.username %> |
+              <%= comment.id %>
+              <%= link_to 'profile', user_profiles_path(current_user) %> |
             </strong>&nbsp;says:
           </h4>
           <p><%=comment.body%></p>
+          <%= link_to 'Reply', new_post_comment_path(@post.id, parent_id: comment), remote: true , id: "comment_#{comment.id}"%>
           <h2>
             <% if current_user != comment.user %>
                 <%= link_to "#{comment.cached_votes_up}", up_post_comment_path(@post.id, comment), method: :put, remote: true, id: 'link_up_comment', class:'label label-success glyphicon glyphicon-thumbs-up' %>
@@ -82,7 +85,7 @@
             </span>
           <% end %>
 
-            <% if comment.created_at > Time.now - 1.days %>
+            <% if comment.created_at > Time.now - 1.day %>
                 <span class="label label-warning glyphicon glyphicon-dashboard">&nbsp;
             <% else %>
                 <span class="label label-default glyphicon glyphicon-dashboard">&nbsp;
@@ -93,6 +96,20 @@
       </div>
       <br>
     <% end %>
+     <div class="nested_messages media">
+          <% if comment.ancestors.size != 0 %>
+            <% comment.descendants.each do |ca| %>
+                <p class="nested_messages">
+                  <%= ca.body %>
+                </p>
+                <h3>
+                  <%= ca.user.username rescue nil  %>
+                  <%= link_to 'Reply', new_post_comment_path(@post.id, parent_id: ca), remote: true , id: "comment_#{ca.id}"%>
+                </h3>
+            <%end%>
+          </div>
+      <%end%>
   <% end %>
 <% end %>
+
 </div>

@@ -1,10 +1,15 @@
 class CommentsController < ApplicationController
 
   before_action :authorize, only: [:create, :up, :down] #LOL
-  before_action :find_post, only: [:create]
+  before_action :find_post
+
+  def new
+    @post
+    @comment = Comment.new(parent_id: params[:parent_id])
+  end
 
   def create
-    @comment = @post.comments.build(params[:comment].permit(:body))
+    @comment = @post.comments.build(params[:comment].permit(:body, :parent_id))
     @comment.user = current_user
     if @comment.save
       CommentMail.new_comment(current_user, @post).deliver #TODO send in a thread

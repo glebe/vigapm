@@ -41,12 +41,11 @@
     <div class="menu row">
     <% @posts.each do |post| %>
         <div class="menu-category list-group">
-            <a href=<%= post_path(post) %> class="menu-item list-group-item">
-
+              <%= link_to post.title, post_path(post), class: "menu-item list-group-item" %>
               <h4 class="list-group-item-heading"><%= post.title %></h4>
 
               <!--Types of label: Default Primary Success Info Warning Danger-->
-              <% if post.updated_at > Time.now - 1.days %>
+              <% if post.updated_at > Time.now - 1.day %>
                   <span class="label label-warning glyphicon glyphicon-dashboard">&nbsp;
               <% else %>
                   <span class="label label-default glyphicon glyphicon-dashboard">&nbsp;
@@ -65,9 +64,9 @@
                   &nbsp;<%=post.cached_votes_down%></span>
               <% end %>
 
-              <% if post.list_of_comments %>
+              <% if post.comments %>
                 <span class="label label-primary glyphicon glyphicon-comment">
-                  &nbsp;<%=post.list_of_comments.length%>
+                  &nbsp;<%=post.comments.size%>
                 </span>
               <% end %>
             </a>

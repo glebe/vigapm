@@ -24,10 +24,6 @@ class Post < ActiveRecord::Base
   has_many :comments
   belongs_to :user
 
-  def list_of_comments
-    comments.to_a if comments.length > 0
-  end
-
   def average_rating
     Post.order(cached_weighted_average: :desc)
   end

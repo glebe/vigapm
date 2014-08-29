@@ -36,6 +36,8 @@ GEM
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
     acts_as_votable (0.10.0)
+    ancestry (2.1.0)
+      activerecord (>= 3.0.0)
     annotate (2.6.5)
       activerecord (>= 2.3.0)
       rake (>= 0.8.7)
@@ -160,6 +162,7 @@ PLATFORMS
 
 DEPENDENCIES
   acts_as_votable (~> 0.10.0)
+  ancestry
   annotate (~> 2.6.5)
   bcrypt-ruby (= 3.1.2)
   bootstrap-sass (~> 3.2.0)

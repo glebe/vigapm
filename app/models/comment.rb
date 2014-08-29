@@ -19,6 +19,8 @@
 
 class Comment < ActiveRecord::Base
   acts_as_votable
+  has_ancestry
+  # default_scope {arrange(:order => :created_at)}
   belongs_to :user
 
 
