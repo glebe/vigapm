@@ -26,7 +26,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :users_notifications, only: [] do
+  resources :users_notifications, only: :index do
     member { put :mark }
   end
 

@@ -2,15 +2,16 @@
   a#notifications-dropdown-link.dropdown-toggle data-toggle='dropdown'
     span.user-avatar
       = image_tag current_user.avatar.url, style: 'width: 30px'
-    span.badge= current_user.unread_users_notifications.count
+    span#notifications-badge.badge= current_user.unread_users_notifications.count
   div#notifications-menu.dropdown-menu role='menu' arai-labelledby='notifications-dropdown-link'
     .header.center Notifications
     - current_user.unread_users_notifications.each do |notification|
-      span.pull-left
-        = link_to user_path(notification.sender)
-          = image_tag notification.sender.avatar.url, style: 'width: 30px'
-      div= raw(notification.message)
-      small #{time_ago_in_words(notification.created_at)} ago
-      = link_to mark_users_notification_path(id: notification.id), remote: true, method: :put
-        i.fa.fa-times-circle-o
-      hr
+      div.notification
+        span.pull-left
+          = link_to user_path(notification.sender)
+            = image_tag notification.sender.avatar.url, style: 'width: 30px'
+        div= raw(notification.message)
+        small #{time_ago_in_words(notification.created_at)} ago
+        = link_to mark_users_notification_path(notification), class: 'mark-notification', remote: true, method: :put
+          i.fa.fa-times-circle-o
+        hr
