@@ -13,9 +13,9 @@ class EventMailer < ActionMailer::Base
     mail to: receiver.email, subject: %["#{event.post.title}" edited]
   end
 
-  def becoming_guru(event, user)
+  def becoming_guru(event, receiver)
     @event = event
 
-    mail to: user.email, subject: %[You became a Guru on "#{event.post.title}"]
+    mail to: receiver.email, subject: %[You became a Guru on "#{event.post.title}"]
   end
 end
