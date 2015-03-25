@@ -241,23 +241,7 @@
               <% end %>
             </div>
             <div class="tab-pane" id="notifications">
-              <%= form_for @user do |f| %>
-                <%- User.stored_attributes[:notification_settings].each do |notification| %>
-                  <div class="form-group">
-                    <div class="col-xs-6">
-                      <label for=<%= notification.to_s %>><%= f.label notification%></label>
-                      <%= f.check_box notification, class: 'form-control' %>
-                    </div>
-                  </div>
-                <% end %>
-
-                <div class="form-group">
-                  <div class="col-xs-12">
-                    <br>
-                    <%= f.submit 'save', :class => "btn btn-info", :id => "_profile_settings_save" %>
-                  </div>
-                </div>
-              <% end %>
+              <%= render 'notification_settings' %>
             </div>
         <% end %>
 
