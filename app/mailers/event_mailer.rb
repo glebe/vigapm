@@ -6,4 +6,10 @@ class EventMailer < ActionMailer::Base
 
     mail to: receiver.email, subject: %[New comment on "#{event.post.title}"]
   end
+
+  def post_edited(event, receiver)
+    @event = event
+
+    mail to: receiver.email, subject: %["#{event.post.title}" edited]
+  end
 end
