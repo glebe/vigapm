@@ -3,6 +3,7 @@ module Notifications
     belongs_to :event
 
     has_one :post, through: :event
+    has_one :sender, through: :event, source: :user
 
     has_many :users_notifications
     has_many :users, through: :users_notifications
