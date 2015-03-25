@@ -8,10 +8,7 @@ class CommentsController < ApplicationController
     @comment = @post.comments.build(comment_params)
     @comment.user = current_user
 
-    if @comment.save
-      CommentMail.new_comment(@post, @comment).deliver
-      Notifications::Event.notify_post_commented!(@post, @comment.user)
-    end
+    Notifications::Event.notify_post_commented!(@post, @comment.user) if @comment.save
 
     respond_with [@post, @comment], location: post_path(@post)
   end

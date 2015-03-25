@@ -33,6 +33,10 @@ module Notifications
                    kind: :post_edited)
     end
 
+    def message
+      self[:message] || send(:"#{kind}_message")
+    end
+
     protected
 
     def create_notification
@@ -44,15 +48,15 @@ module Notifications
     end
 
     def post_commented_message
-      sprintf '<strong>%s</strong> wrote a new comment on <strong>%s</strong>', user, post
+      sprintf '<strong>%s</strong> wrote a new comment on <strong>%s</strong>', user.username, post.title
     end
 
     def becoming_guru_message
-      sprintf 'Congratulations! You are now a Guru on <strong>%s</strong>', post
+      sprintf 'Congratulations! You are now a Guru on <strong>%s</strong>', post.title
     end
 
     def post_edited_message
-      sprintf '<strong>%s</strong> has updated <strong>%s</strong>', user, post
+      sprintf '<strong>%s</strong> has updated <strong>%s</strong>', user.username, post.title
     end
   end
 end

@@ -6,13 +6,15 @@ class UsersNotification < ActiveRecord::Base
 
   delegate :message, to: :notification
 
-  after_commit :send_email_to_user!, on: :create
+  after_create :send_email_to_user!
 
   protected
 
-  # TODO: implement email notification
   def send_email_to_user!
-    send_email_to_user?
+    if send_email_to_user?
+      mail = EventMailer.send(notification.event.kind, notification.event, user)
+      mail.deliver if mail
+    end
   end
 
   def send_email_to_user?

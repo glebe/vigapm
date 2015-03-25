@@ -1,18 +1,20 @@
-#notifications {
-  display: inline-block;
+.user-area {
+  #notifications {
+    display: inline-block;
 
-  .header {
-    background: #f7f7f7;
-    min-height: 4rem;
-    font-size: 2rem;
-  }
+    .header {
+      background: #f7f7f7;
+      min-height: 4rem;
+      font-size: 2rem;
+    }
 
-  .open .dropdown-menu {
-    display:block;
-    top:auto;
-  }
+    .open .dropdown-menu {
+      display: block;
+      top: auto;
+    }
 
-  .btn-group .dropdown-menu {
-    font-size:14px;
+    .btn-group .dropdown-menu {
+      font-size: 14px;
+    }
   }
 }
