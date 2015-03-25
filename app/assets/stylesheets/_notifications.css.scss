@@ -6,4 +6,13 @@
     min-height: 4rem;
     font-size: 2rem;
   }
+
+  .open .dropdown-menu {
+    display:block;
+    top:auto;
+  }
+
+  .btn-group .dropdown-menu {
+    font-size:14px;
+  }
 }

@@ -11,9 +11,5 @@ class UsersNotificationsController < ApplicationController
   def mark
     @users_notification = current_user.unread_users_notifications.find(params[:id])
     @users_notification.update(viewed: true)
-
-    if current_user.unread_users_notifications.count <= 20
-      render nothing: true, status: 200
-    end
   end
 end

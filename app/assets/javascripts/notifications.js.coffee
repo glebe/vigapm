@@ -1,5 +1,5 @@
 $ ->
-  $('.user-area').on 'ajax:success', '.mark-notification', (e) ->
+  $('.user-area').on 'ajax:complete', '.mark-notification', (e) ->
     $(@).parent('.notification').remove()
 
     $.getJSON Routes.users_notifications_path(), (data) ->

@@ -60,7 +60,7 @@ class User < ActiveRecord::Base
 
   has_many :users_notifications
   has_many :unread_users_notifications,
-           -> { where(viewed: false).limit(20) },
+           -> { where(viewed: false) },
            class_name: UsersNotification
 
   acts_as_voter
