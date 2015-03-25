@@ -63,8 +63,11 @@ ActiveRecord::Schema.define(version: 20150324162830) do
   end
 
   create_table "events", force: true do |t|
-    t.integer "kind"
-    t.integer "post_id"
+    t.integer  "kind"
+    t.integer  "post_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "events", ["post_id"], name: "index_events_on_post_id", using: :btree
@@ -95,8 +98,10 @@ ActiveRecord::Schema.define(version: 20150324162830) do
   add_index "impressions", ["user_id"], name: "index_impressions_on_user_id", using: :btree
 
   create_table "notifications", force: true do |t|
-    t.integer "event_id"
-    t.string  "message"
+    t.integer  "event_id"
+    t.string   "message"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "notifications", ["event_id"], name: "index_notifications_on_event_id", using: :btree
@@ -214,9 +219,11 @@ ActiveRecord::Schema.define(version: 20150324162830) do
   end
 
   create_table "users_notifications", force: true do |t|
-    t.integer "user_id"
-    t.integer "notification_id"
-    t.boolean "viewed",          default: false, null: false
+    t.integer  "user_id"
+    t.integer  "notification_id"
+    t.boolean  "viewed",          default: false, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "users_notifications", ["notification_id"], name: "index_users_notifications_on_notification_id", using: :btree

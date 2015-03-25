@@ -59,7 +59,10 @@ class User < ActiveRecord::Base
   has_many :subscription_posts, -> { order('created_at DESC') }, through: :subscriptions, source: :post
 
   has_many :users_notifications
-  has_many :unread_notifications, -> { where(users_notifications: { viewed: false }) }, through: :users_notifications, source: :notification
+  has_many :unread_notifications,
+           -> { where(users_notifications: { viewed: false }).limit(20) },
+           through: :users_notifications,
+           source: :notification
 
   acts_as_voter
   has_attached_file :avatar,
