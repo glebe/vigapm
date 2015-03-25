@@ -7,9 +7,9 @@ class CreateEvents < ActiveRecord::Migration
     end
 
     User.find_each do |user|
-      user.notify_becoming_guru = true
-      user.notify_post_commented = true
-      user.notify_post_edited = true
+      user.notify_becoming_guru = 1
+      user.notify_post_commented = 1
+      user.notify_post_edited = 1
       user.save
     end
 
