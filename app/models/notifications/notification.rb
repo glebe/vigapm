@@ -15,7 +15,9 @@ module Notifications
 
     def create_users_notifications
       # Guru changed
-      UsersNotification.create!(user: post.guru, notification: self) if event.becoming_guru?
+      if event.becoming_guru?
+        UsersNotification.create!(user: post.guru, notification: self)
+      end
 
       # Post edited
       if event.post_edited?
