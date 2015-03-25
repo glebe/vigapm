@@ -14,7 +14,22 @@ module Notifications
     protected
 
     def create_users_notifications
+      # Guru changed
       UsersNotification.create!(user: post.guru, notification: self) if event.becoming_guru?
+
+      # Post edited
+      if event.post_edited?
+        post.users.find_each do |user|
+          UsersNotification.create!(user: user, notification: self)
+        end
+      end
+
+      # Post commented
+      if event.post_commented?
+        (post.users + [post.user] + [post.guru]).uniq.each do |user|
+          UsersNotification.create!(user: user, notification: self)
+        end
+      end
     end
   end
 end
