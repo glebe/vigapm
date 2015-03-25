@@ -1,8 +1,9 @@
 class UsersNotification < ActiveRecord::Base
   belongs_to :user
   belongs_to :notification, class_name: Notifications::Notification
+  has_one :sender, through: :notification
 
-  after_commit :send_email_to_user, on: :create
+  after_commit :send_email_to_user!, on: :create
 
   protected
 

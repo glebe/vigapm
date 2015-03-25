@@ -1,12 +1,12 @@
-.btn-group
-  a#notifications-dropdown.dropdown-toggle data-toggle='dropdown'
-    | Notifications
-    span.badge= current_user.unread_notifications.count
-    span.caret
-  div.dropdown-menu role='menu' arai-labelledby='notifications-dropdown'
-    - current_user.unread_notifications.each do |notification|
-      span.pull-left
-        = link_to user_path(notification.sender)
-          = image_tag notification.sender.avatar.url, style: 'width: 30px'
-      div[data-notification-id=notification.id]= raw(notification.message)
-      small #{time_ago_in_words(notification.created_at)} ago
+a#notifications-dropdown.dropdown-toggle data-toggle='dropdown'
+  | Notifications
+  span.badge= current_user.unread_notifications.count
+  span.caret
+div#notifications.dropdown-menu role='menu' arai-labelledby='notifications-dropdown'
+  - current_user.unread_notifications.each do |notification|
+    span.pull-left
+      = link_to user_path(notification.sender)
+        = image_tag notification.sender.avatar.url, style: 'width: 30px'
+    div[data-notification-id=notification.id]= raw(notification.message)
+    small #{time_ago_in_words(notification.created_at)} ago
+    hr
