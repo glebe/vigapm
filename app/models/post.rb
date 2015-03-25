@@ -57,6 +57,7 @@ class Post < ActiveRecord::Base
   def change_guru!
     if seeking_new_guru? && guru_should_leave?
       self.update!(guru: guru_candidate)
+      Notifications::Event.notify_becoming_guru!(self)
     end
   end
 

@@ -21,6 +21,8 @@
 #
 
 class User < ActiveRecord::Base
+  store_accessor :notification_settings, Notifications::Event::EVENT_TYPES.map { |t| %(notify_#{t.to_s}).to_sym }
+
   has_secure_password
   attr_reader :ranking
   before_create { generate_token(:auth_token) }
@@ -55,6 +57,9 @@ class User < ActiveRecord::Base
 
   has_many :subscriptions
   has_many :subscription_posts, -> { order('created_at DESC') }, through: :subscriptions, source: :post
+
+  has_many :users_notifications
+  has_many :unread_notifications, -> { where(users_notifications: { viewed: false }) }, through: :users_notifications, source: :notification
 
   acts_as_voter
   has_attached_file :avatar,
