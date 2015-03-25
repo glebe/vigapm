@@ -1,7 +1,5 @@
 module Notifications
   class Event < ActiveRecord::Base
-    include ActionView::Helpers::UrlHelper
-
     EVENT_TYPES = %i(becoming_guru post_commented post_edited)
 
     attr_accessor :message
@@ -46,23 +44,15 @@ module Notifications
     end
 
     def post_commented_message
-      sprintf '%s wrote a new comment on %s', link_to_user, link_to_post
+      sprintf '<strong>%s</strong> wrote a new comment on <strong>%s</strong>', user, post
     end
 
     def becoming_guru_message
-      sprintf 'Congratulations! You are now a Guru on %s', link_to_post
+      sprintf 'Congratulations! You are now a Guru on <strong>%s</strong>', post
     end
 
     def post_edited_message
-      sprintf '%s has updated %s', link_to_user, link_to_post
-    end
-
-    def link_to_user
-      link_to(user.username, Rails.application.routes.url_helpers.user_path(user))
-    end
-
-    def link_to_post
-      link_to(post.title, Rails.application.routes.url_helpers.post_path(post))
+      sprintf '<strong>%s</strong> has updated <strong>%s</strong>', user, post
     end
   end
 end
