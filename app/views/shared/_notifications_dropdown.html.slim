@@ -10,7 +10,7 @@
         span.pull-left
           = link_to user_path(notification.sender)
             = image_tag notification.sender.avatar.url, style: 'width: 30px'
-        div= raw(notification.message)
+        div[data-notification-post-id=notification.post.slug]= raw(notification.message)
         small #{time_ago_in_words(notification.created_at)} ago
         = link_to mark_users_notification_path(notification), class: 'mark-notification', remote: true, method: :put
           i.fa.fa-times-circle-o

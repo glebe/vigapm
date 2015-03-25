@@ -2,6 +2,7 @@ class UsersNotification < ActiveRecord::Base
   belongs_to :user
   belongs_to :notification, class_name: Notifications::Notification
   has_one :sender, through: :notification
+  has_one :post, through: :notification
 
   delegate :message, to: :notification
 
