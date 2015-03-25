@@ -2,9 +2,6 @@ $ ->
   $('.user-area').on 'ajax:complete', '.mark-notification', (e) ->
     $(@).parent('.notification').remove()
 
-    $.getJSON Routes.users_notifications_path(), (data) ->
-      $('#notifications-badge').html(data.total_count)
-
   $('.user-area').on 'click', 'div[data-notification-post-id]', (e) ->
     $.ajax Routes.mark_users_notification_path($(@).parent('.notification').attr('id')),
       dataType: 'json',
