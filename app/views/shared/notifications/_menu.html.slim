@@ -2,7 +2,7 @@ ul#notifications-menu.dropdown-menu role='menu' aria-labelledby='notifications-d
   .header.center Notifications
   - if current_user.unread_users_notifications.any?
     li.divider[role='presentation']
-    - current_user.unread_users_notifications.limit(2).each do |notification|
+    - current_user.unread_users_notifications.limit(20).each do |notification|
       li.notification[id=notification.id]
         span.pull-left
           = link_to user_path(notification.sender)
