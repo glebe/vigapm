@@ -1,17 +1,14 @@
-ul#notifications-menu.dropdown-menu role='menu' aria-labelledby='notifications-dropdown-link'
-  .header.center Notifications
-  - if current_user.unread_users_notifications.any?
-    li.divider[role='presentation']
-    - current_user.unread_users_notifications.limit(20).each do |notification|
-      li.notification[id=notification.id]
-        span.pull-left
-          = link_to user_path(notification.sender)
-            = image_tag notification.sender.avatar.url, style: 'width: 30px'
-        div[data-notification-post-id=notification.post.slug]
-          = raw(notification.message)
-        small #{time_ago_in_words(notification.created_at)} ago
-        = link_to mark_users_notification_path(notification), class: 'mark-notification', remote: true, method: :put
-          i.fa.fa-times-circle-o
-        li.divider[role='presentation']
-  - else
-    li.dropdown-header[role='presentation'] No notifications so far!
+#notifications-menu.dropdown-menu role='menu' aria-labelledby='notifications-dropdown-link'
+  .notifications-title Notifications
+  ul.notifications-dropdown
+    - if current_user.unread_users_notifications.any?
+      - current_user.unread_users_notifications.limit(20).each do |notification|
+        li.notification[id=notification.id]
+          = link_to user_path(notification.sender), class: 'notification-avatar'
+            = image_tag notification.sender.avatar.url, class: 'img-circle'
+          = link_to mark_users_notification_path(notification), class: 'mark-notification', remote: true, method: :put do
+            div[data-notification-post-id=notification.post.slug]
+              = raw(notification.message)
+            small #{time_ago_in_words(notification.created_at)} ago
+    - else
+      li.empty-notifications[role='presentation'] No notifications so far!

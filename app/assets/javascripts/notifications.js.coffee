@@ -3,7 +3,7 @@ $ ->
     $(@).parent('.notification').remove()
 
   $('.user-area').on 'click', 'div[data-notification-post-id]', (e) ->
-    $.ajax Routes.mark_users_notification_path($(@).parent('.notification').attr('id')),
+    $.ajax Routes.mark_users_notification_path($(@).closest('.notification').attr('id')),
       dataType: 'json',
       method: 'PUT'
     post_path = Routes.post_path($(@).data('notification-post-id'))
