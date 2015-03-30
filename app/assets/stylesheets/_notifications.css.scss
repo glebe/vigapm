@@ -12,15 +12,15 @@
     }
 
     .hover-btn {
-      position: relative;
+      position: absolute;
       left: 240px;
-      top: -60px;
+      top: 2px;
       display: none;
       z-index: 3;
     }
 
     li:hover .hover-btn {
-      display: block;
+      display: inline;
     }
   }
 }
@@ -101,9 +101,7 @@ a.notification-avatar {
 }
 
 a.mark-notification {
-  &:hover {
-    background: #f1f1f1;
-  }
+  color: #000000;
 }
 
 .notifications-menu {

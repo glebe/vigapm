@@ -12,6 +12,6 @@
             small #{time_ago_in_words(notification.created_at)} ago
           .hover-btn
             = link_to mark_users_notification_path(notification), class: 'mark-notification', remote: true, method: :put
-              i.glyphicon.glyphicon-remove
+              span.glyphicon.glyphicon-remove aria-hidden="true"
     - else
       li.empty-notifications[role='presentation'] No notifications so far!
