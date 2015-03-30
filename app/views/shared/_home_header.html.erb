@@ -12,7 +12,9 @@
               </a>
         <% else %>
               <%= link_to t('user.user_login'), new_session_path, title: t('user.user_login'), id: '_home_singin' %>
-        <% end %>
+              <%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in" %>
+
+  <% end %>
 
 
       <!-- post -->

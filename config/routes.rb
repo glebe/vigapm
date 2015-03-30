@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
   root 'welcome#index'
+
+  get 'auth/:provider/callback', controller: :provider, action: :create, module: :sessions
+  get 'auth/failure', to: redirect('/')
+
   get 'autocomplete', to: 'welcome#autocomplete'
-  resource :contact, onlyt: %i(show create) # Contact page
+  resource :contact, only: %i(show create) # Contact page
   resources :password_resets
   resources :tags
   resources :sessions, only: [:new, :create, :destroy]
