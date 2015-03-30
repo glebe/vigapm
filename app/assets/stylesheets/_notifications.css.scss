@@ -10,6 +10,18 @@
     .btn-group .dropdown-menu {
       font-size: 14px;
     }
+
+    .hover-btn {
+      position: relative;
+      left: 240px;
+      top: -60px;
+      display: none;
+      z-index: 3;
+    }
+
+    li:hover .hover-btn {
+      display: block;
+    }
   }
 }
 
@@ -66,13 +78,17 @@ a.notification-avatar {
   list-style-type: none;
   margin: 0;
 
-  a.mark-notification {
+  div.notification-message {
     white-space: normal;
     padding: 3px 10px 3px 38px;
     display: block;
     line-height: normal;
     min-width: 260px;
     color: #7f8c8d;
+
+    strong {
+      color: #333;
+    }
   }
 
   a.notification-avatar {
@@ -85,10 +101,6 @@ a.notification-avatar {
 }
 
 a.mark-notification {
-  strong {
-    color: #333;
-  }
-
   &:hover {
     background: #f1f1f1;
   }
