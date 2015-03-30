@@ -24,7 +24,7 @@
                 <span>by <a href="<%=user_path(@post.user) rescue ""%>" id="_posts_createdby_profile">
                     <%= @post.user.username rescue "Vigap" %></a>
                     <span class="badge <%=@post.user.username.gsub(/ /, "-") rescue "Vigap"%>-rank">
-                      <%=@post.user.ranking rescue 0%>
+                      <%=@post.user.ranking_for(post) rescue 0%>
                     </span>
                 </span>
                 &nbsp;&nbsp;&nbsp;&nbsp;
