@@ -18,6 +18,7 @@ class SignUpUserViaFacebook
     context.user = context.identity.build_user(
       username: context.omniauth.info.first_name,
       email: context.omniauth.info.email)
+    context.user.avatar = URI.parse(context.omniauth.info.image)
 
     context.user.save(validate: false)
     context.identity.save
