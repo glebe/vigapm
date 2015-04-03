@@ -103,6 +103,10 @@ GEM
     impressionist (1.5.1)
       httpclient (~> 2.2)
       nokogiri (~> 1.5)
+    interactor (3.1.0)
+    interactor-rails (2.0.1)
+      interactor (~> 3.0)
+      rails (>= 3, < 5)
     jquery-rails (3.1.1)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
@@ -262,6 +266,7 @@ DEPENDENCIES
   flat-ui-rails
   font-awesome-rails
   impressionist
+  interactor-rails
   jquery-rails
   kaminari
   kaminari-bootstrap (~> 3.0.1)

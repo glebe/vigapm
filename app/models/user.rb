@@ -41,6 +41,7 @@ class User < ActiveRecord::Base
   REGEX = /\A[^@\s]+@([^@.\s]+\.)+[^@.\s]+\z/
   validates :email, presence: true, uniqueness: true, format: { with: REGEX }
   validates :username, presence: true, uniqueness: true
+  has_many :identities
   has_many :posts, dependent: :destroy
   has_many :ruled_posts, class_name: 'Post', foreign_key: 'guru_id'
   has_many :comments, dependent: :destroy

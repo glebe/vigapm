@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
   root 'welcome#index'
 
-  get 'auth/:provider/callback', controller: :provider, action: :create, module: :sessions
-  get 'auth/failure', to: redirect('/')
+  scope module: 'sessions' do
+    get 'auth/facebook/callback', action: :create, controller: :facebook
+    get 'auth/failure', to: redirect('/')
+  end
 
   get 'autocomplete', to: 'welcome#autocomplete'
   resource :contact, only: %i(show create) # Contact page
