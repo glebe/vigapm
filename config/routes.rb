@@ -31,6 +31,11 @@ Rails.application.routes.draw do
       get :following, :followers
     end
   end
+
+  resources :users_notifications, only: [] do
+    member { put :mark }
+  end
+
   resources :relationships, only: [:create, :destroy]
   resources :subscriptions, only: [:create, :destroy]
 
